@@ -71,8 +71,8 @@ const Barrage = class {
                 for (let mutation of mutationsList) {
                     if (mutation.type === 'childList' && mutation.addedNodes.length) {
                         let dom = mutation.addedNodes[0]
-                        console.log("memberMessage:",dom[this.propsId].children.props.message.payload);
-                        let user = dom[this.propsId].children.props.message.payload.user
+                        //console.log("memberMessage:",dom[this.propsId].children.props.message.payload);
+                        /*let user = dom[this.propsId].children.props.message.payload.user
                         let msg = {
                             ...this.getUser(user),
                             ... { msg_content: `${user.nickname} 来了` }
@@ -81,6 +81,8 @@ const Barrage = class {
                             this.event['join'](msg)
                         }
                         this.ws.send(JSON.stringify({ action: 'join', message: msg }));
+                        */
+                        this.ws.send(dom[this.propsId].children.props.message);
                     }
                 }
             });
@@ -93,7 +95,7 @@ const Barrage = class {
                 if (mutation.type === 'childList' && mutation.addedNodes.length) {
                     let b = mutation.addedNodes[0]
                     if (b[this.propsId].children.props.message) {
-                        let message = this.messageParse(b)
+                        /*let message = this.messageParse(b)
                         if (message) {
                             if (this.eventRegirst.message) {
                                 this.event['join'](message)
@@ -102,7 +104,8 @@ const Barrage = class {
                                 return
                             }
                             this.ws.send(JSON.stringify({ action: 'message', message: message }));
-                        }
+                        }*/
+                        this.ws.send(dom[this.propsId].children.props.message);
                     }
                 }
             }

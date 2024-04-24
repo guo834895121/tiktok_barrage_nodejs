@@ -71,7 +71,7 @@ const Barrage = class {
                 for (let mutation of mutationsList) {
                     if (mutation.type === 'childList' && mutation.addedNodes.length) {
                         let dom = mutation.addedNodes[0]
-                        //console.log("memberMessage:",dom[this.propsId].children.props.message.payload);
+                        console.log("memberMessage:",dom[this.propsId].children.props.message.payload);
                         /*let user = dom[this.propsId].children.props.message.payload.user
                         let msg = {
                             ...this.getUser(user),
@@ -93,9 +93,10 @@ const Barrage = class {
         this.chatObserverrom = new MutationObserver((mutationsList, observer) => {
             for (let mutation of mutationsList) {
                 if (mutation.type === 'childList' && mutation.addedNodes.length) {
-                    let b = mutation.addedNodes[0]
-                    if (b[this.propsId].children.props.message) {
-                        /*let message = this.messageParse(b)
+                    let dom = mutation.addedNodes[0]
+                    console.log("chatMessage:",dom[this.propsId].children.props.message.payload);
+                    if (dom[this.propsId].children.props.message) {
+                        /*let message = this.messageParse(dom)
                         if (message) {
                             if (this.eventRegirst.message) {
                                 this.event['join'](message)

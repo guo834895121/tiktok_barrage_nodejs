@@ -71,6 +71,7 @@ const Barrage = class {
                 for (let mutation of mutationsList) {
                     if (mutation.type === 'childList' && mutation.addedNodes.length) {
                         let dom = mutation.addedNodes[0]
+                        console.log("memberMessage:",dom[this.propsId].children.props.message.payload);
                         let user = dom[this.propsId].children.props.message.payload.user
                         let msg = {
                             ...this.getUser(user),
@@ -143,6 +144,7 @@ const Barrage = class {
             return null
         }
         let msg = dom[this.propsId].children.props.message.payload
+        console.log("chatMessage:",msg);
         let result = {
             repeatCount: null,
             gift_id: null,

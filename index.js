@@ -71,7 +71,7 @@ const Barrage = class {
                 for (let mutation of mutationsList) {
                     if (mutation.type === 'childList' && mutation.addedNodes.length) {
                         let dom = mutation.addedNodes[0]
-                        console.log("memberMessage:",dom[this.propsId].children.props.message.payload);
+                        console.log("memberMessage:",JSON.stringify(dom[this.propsId].children.props.message.payload));
                         /*let user = dom[this.propsId].children.props.message.payload.user
                         let msg = {
                             ...this.getUser(user),
@@ -82,7 +82,7 @@ const Barrage = class {
                         }
                         this.ws.send(JSON.stringify({ action: 'join', message: msg }));
                         */
-                        this.ws.send(dom[this.propsId].children.props.message);
+                        this.ws.send(JSON.stringify(dom[this.propsId].children.props.message.payload));
                     }
                 }
             });
@@ -94,7 +94,7 @@ const Barrage = class {
             for (let mutation of mutationsList) {
                 if (mutation.type === 'childList' && mutation.addedNodes.length) {
                     let dom = mutation.addedNodes[0]
-                    console.log("chatMessage:",dom[this.propsId].children.props.message.payload);
+                    console.log("chatMessage:",JSON.stringify(dom[this.propsId].children.props.message.payload));
                     if (dom[this.propsId].children.props.message) {
                         /*let message = this.messageParse(dom)
                         if (message) {
@@ -106,7 +106,7 @@ const Barrage = class {
                             }
                             this.ws.send(JSON.stringify({ action: 'message', message: message }));
                         }*/
-                        this.ws.send(dom[this.propsId].children.props.message);
+                        this.ws.send(JSON.stringify(dom[this.propsId].children.props.message.payload));
                     }
                 }
             }
